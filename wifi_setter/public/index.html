@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi Configuration - Append Network</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label, input {
+            display: block;
+            margin: 10px 0;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>WiFi Configuration - Append Network</h1>
+
+    <label for="ssid">SSID:</label>
+    <input type="text" id="ssid" name="ssid" placeholder="Enter SSID" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+    
+    <button id="generateBtn">Append Network and Generate Updated File</button>
+
+    <textarea id="configOutput" readonly></textarea>
+
+    <p id="responseMessage" style="color: green;"></p>
+
+    <script>
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            debugger
+            // Get user input for SSID and Password
+            const ssid = document.getElementById('ssid').value.trim();
+            const password = document.getElementById('password').value.trim();
+            console.log(`SSID: ${ssid}, Password: ${password}`);
+
+            // Validate input
+            if (!ssid || !password) {
+                alert("Please enter both SSID and password.");
+                //return;
+            } 
+            
+
+            // Append the new network block
+            const newNetwork = `
+network={
+    ssid="${ssid}"
+    psk="${password}"
+}
+`; 
+
+            // Send the updated configuration to the server
+            fetch('http://192.168.0.100:3000/save-config', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ssid: ssid,
+                    password: password
+                })
+            })
+            .then(response => {
+                console.log('Response Status:', response.status);
+                return response.text();
+            })
+            .then(data => {
+                console.log('Response Data:', data);
+                document.getElementById('responseMessage').textContent = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('responseMessage').textContent = 'Failed to save configuration.';
+            });
+        });
+    </script>
+
+</body>
+</html>

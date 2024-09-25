@@ -1,0 +1,58 @@
+IoT - Broker
+
+IoT - Client - Publisher
+
+Authentication: S/N => Username, Password = Encrypted S/N
+HeartBeat
+Sending Event Based Data 
+Publish sensor data by topics 
+Retained message to remove, send data directly on live (db)
+Sending Time Based Data 
+IoT - Client - Subscriber
+
+Authentication: S/N => Username, Password = Encrypted S/N
+Save MQTT Messages into Database
+IoT - Control Panel - Admin
+
+Tenant Management: Enable / Disable - Update all related device Broker
+Tenant Management: Create / Enable / Disable - (Toggle) - Update Broker - Create User in Broker
+Tenant Management: HeartBeat of the Device - Online / Offline
+Tenant Management: Upon New Device Addition, User / Password Need to be created at Broker
+Tenant Management: Upon Device Deletion, User / Password Need to be deleted at Broker
+Tenant Management: Door Lock - Event Based - Enable / Disable - Update Broker
+Tenant Management: PIR - Motion Detection - Event Based - Enable / Disable - Update Broker
+Tenant Management: Temperature Enable / Disable - Update Broker
+Tenant Management: Alert Temperature less than > XX (default 20) - Update Broker
+Tenant Management: Temperature Alert Frequency (in Minutes)
+Tenant Management: Humidity Enable / Disable - Update Broker
+Tenant Management: Humidity Alert Frequency (in Minutes)
+Tenant Management: Alert Humidity less than > XX (default 20) - Update Broker
+Tenant Management: LDR - Light Detection Enable / Disable - Update Broker
+Tenant Management: Light Alert Frequency (in Minutes)
+Tenant Management: Device current setting needs to be checked between pub and sub before sending data to db
+ 
+ 
+Device Management: Enable / Disable - Update all related device Broker
+Device Management: Create / Enable / Disable - (Toggle) - Update Broker - Create User in Broker
+Device Management: HeartBeat of the Device - Online / Offline
+Device Management: Device Limit Check while Enabling / Create
+Device Management: Upon New Device Addition, User / Password Need to be created at Broker
+Device Management: Upon Device Deletion, User / Password Need to be deleted at Broker
+Device Management: Door Lock - Event Based - Enable / Disable - Update Broker
+Device Management: PIR - Motion Detection - Event Based - Enable / Disable - Update Broker
+Device Management: Temperature Enable / Disable - Update Broker
+Device Management: Alert Temperature less than > XX (default 20) - Update Broker
+Device Management: Temperature Alert Frequency (in Minutes)
+Device Management: Humidity Enable / Disable - Update Broker
+Device Management: Humidity Alert Frequency (in Minutes)
+Device Management: Alert Humidity less than > XX (default 20) - Update Broker
+Device Management: LDR - Light Detection Enable / Disable - Update Broker
+Device Management: Light Alert Frequency (in Minutes)
+Device Management: Alert DayTime Lumin More Than > XX (default XX) - Update Broker
+Device Management: Alert NightTime Lumin More Than > XX (default XX) - Update Broker
+Device Management: Device current setting needs to be checked between pub and sub before sending data to db
+Device Management: Logs of each Sensor for last 30 days (Timestamp, Sensor Type, Description - Value/Offline/Online)
+Device Management: Users can export Logs
+IoT - Product
+
+Database: Null values sending, handling to be done when marking device or account as disabled (Must not dump any entry in db)
